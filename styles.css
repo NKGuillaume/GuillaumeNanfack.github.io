@@ -9,7 +9,7 @@
   --tile-ink: #f5f0e6;
   --display: "Newsreader", Georgia, serif;
   --sans: "Public Sans", system-ui, sans-serif;
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
   --gutter: clamp(16px, 5vw, 64px);
   color-scheme: light;
 }
@@ -56,14 +56,15 @@ ul, ol { padding: 0; list-style: none; }
 .top {
   position: sticky; top: 0; z-index: 5;
   display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-  padding: 0.9rem var(--gutter);
+  padding: 0.25rem var(--gutter);
   background: color-mix(in srgb, var(--paper) 88%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--rule);
 }
-.mark { font: 700 1.05rem var(--display); letter-spacing: 0.04em; text-decoration: none; }
+.mark { display: inline-block; padding: 0.8rem 0; font: 700 1.05rem var(--display); letter-spacing: 0.04em; text-decoration: none; }
 .top ul { display: flex; gap: clamp(0.9rem, 3vw, 2rem); font-size: 0.95rem; }
-.top nav a { text-decoration: none; color: var(--muted); padding: 0.4rem 0; }
+/* 44px tap targets; header padding shrinks so its height stays the same */
+.top nav a { display: inline-block; text-decoration: none; color: var(--muted); padding: 0.7rem 0; }
 .top nav a:hover { color: var(--ink); }
 
 main > section { padding: clamp(4rem, 10vw, 8rem) var(--gutter) 0; max-width: 76rem; margin: 0 auto; }
@@ -77,9 +78,8 @@ h3 { font-size: 1.5rem; letter-spacing: -0.01em; }
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 0.95;
-  font-variation-settings: "opsz" 72;
 }
-.lede { margin-top: 1.75rem; max-width: 36ch; font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.45; color: var(--muted); }
+.lede { margin-top: 1.75rem; max-width: 46ch; font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.45; color: var(--muted); }
 
 .ladder { margin: 2.75rem 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
 .tiles { display: flex; gap: 6px; perspective: 400px; }
@@ -106,12 +106,13 @@ h3 { font-size: 1.5rem; letter-spacing: -0.01em; }
 .route li.on { color: var(--ink); font-weight: 600; }
 .hint { font-size: 0.85rem; color: var(--muted); }
 
-.actions { margin-top: 2.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.75rem; }
+.actions { margin-top: 2.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 1.75rem; }
+.actions a:not(.btn) { display: inline-block; padding: 0.75rem 0; }
 .btn {
   display: inline-flex; align-items: baseline; gap: 0.5rem;
   padding: 0.8rem 1.3rem; border-radius: 999px;
   background: var(--ink); color: var(--paper); text-decoration: none; font-weight: 600;
-  transition: transform 0.2s var(--ease), background-color 0.2s;
+  transition: transform 0.16s var(--ease), background-color 0.2s ease;
 }
 .btn:hover { background: var(--accent); }
 .btn:active { transform: scale(0.97); }
@@ -124,11 +125,11 @@ h3 { font-size: 1.5rem; letter-spacing: -0.01em; }
 }
 .project:last-of-type { border-bottom: 1px solid var(--rule); }
 .project h3 { font-size: clamp(1.75rem, 3.2vw, 2.4rem); letter-spacing: -0.02em; }
-.meta { margin-top: 0.6rem; font-size: 0.9rem; color: var(--muted); max-width: 34ch; }
-.go { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+.meta { margin-top: 0.6rem; font-size: 0.9rem; color: var(--muted); max-width: 42ch; }
+.go { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.4rem; padding: 0.65rem 0; font-weight: 600; color: var(--accent); text-decoration: none; }
 .go:hover { text-decoration: underline; }
 .go .i { transition: transform 0.25s var(--ease); }
-.go:hover .i { transform: translate(2px, -2px); }
+@media (hover: hover) and (pointer: fine) { .go:hover .i { transform: translate(2px, -2px); } }
 .body { max-width: 62ch; }
 .body > p { font-size: 1.1rem; }
 .body ul, .timeline ul { margin-top: 1rem; display: grid; gap: 0.6rem; }
@@ -165,6 +166,12 @@ h3 { font-size: 1.5rem; letter-spacing: -0.01em; }
 .email:hover { color: var(--accent); }
 .foot { padding: 1.5rem var(--gutter); border-top: 1px solid var(--rule); font-size: 0.85rem; color: var(--muted); text-align: center; }
 
+@media (min-width: 1100px) {
+  /* wide screens: ladder moves into the empty right column so projects rise toward the fold */
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 4rem; align-items: end; }
+  .hero h1 { grid-column: 1 / -1; }
+  .ladder { grid-column: 2; grid-row: 2 / span 2; flex-direction: column; align-items: flex-start; margin: 0 0 0.75rem; }
+}
 @media (max-width: 760px) {
   .project, .timeline > li, .skills > div, .about { grid-template-columns: minmax(0, 1fr); }
   .top ul { gap: 0.9rem; font-size: 0.9rem; }
@@ -174,5 +181,10 @@ h3 { font-size: 1.5rem; letter-spacing: -0.01em; }
   .top ul { gap: 0.6rem; font-size: 0.8rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .tiles span.flip { animation: none; }
+  .btn:active, .go:hover .i { transform: none; } /* drop movement, keep color fades */
+}
+.meta, .when, .hint, .foot, .small { letter-spacing: 0.01em; }
+@media (prefers-reduced-transparency: reduce) {
+  .top { background: var(--paper); backdrop-filter: none; }
 }
