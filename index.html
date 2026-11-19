@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guillaume Nanfack Kengni — Software Engineer</title>
+  <meta name="description" content="Guillaume Nanfack Kengni, Computer Science student at the University of Maryland. Daily word games, AI tools, and full-stack apps that real people use.">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:title" content="Guillaume Nanfack Kengni">
+  <meta property="og:description" content="CS at the University of Maryland. I build games and AI tools that people actually use.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..800&family=Instrument+Sans:wght@400..600&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top">
+    <a class="mark" href="#top" aria-label="Guillaume Nanfack Kengni, back to top">GNK</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="name">
+      <h1 id="name">Guillaume<br>Nanfack Kengni</h1>
+      <p class="lede">Computer Science at the University of Maryland. I build games and AI tools that people actually use, and every puzzle and model output is checked before it reaches them.</p>
+
+      <figure class="ladder" aria-label="Word ladder: code, lode, love, live">
+        <div class="tiles" aria-hidden="true"><span>c</span><span>o</span><span>d</span><span>e</span></div>
+        <figcaption><ol class="route" aria-hidden="true"><li>code</li><li>lode</li><li>love</li><li>live</li></ol><span class="hint">One letter at a time, from code to live.</span></figcaption>
+      </figure>
+
+      <ul class="actions">
+        <li><a class="btn" href="resume.pdf" download>Download resume <span class="sub">PDF</span></a></li>
+        <li><a href="https://github.com/NKGuillaume" rel="me">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/guillaume-nanfack-64382832a" rel="me">LinkedIn</a></li>
+        <li><a href="mailto:nanfackguillaumekengni@gmail.com">Email</a></li>
+      </ul>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-h">
+      <h2 id="projects-h">Projects</h2>
+
+      <article class="project">
+        <header>
+          <h3>LeReplacey</h3>
+          <p class="meta">Daily word-ladder game · Freelance, client-commissioned · Vanilla JS, Node, Vite, Vercel</p>
+          <a class="go" href="https://lereplacey.vercel.app">Play it <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg><span class="sr"> (opens LeReplacey)</span></a>
+        </header>
+        <div class="body">
+          <p>Commissioned by a Meaning Ladder player. You change one letter at a time to turn the start word into the goal word. It launched as Rungle.</p>
+          <ul>
+            <li>Generator searched a <strong>172,000-word</strong> dictionary to produce <strong>730 days</strong> of puzzles, each verified solvable with common words.</li>
+            <li>Split-flap “departure board” UI in vanilla JavaScript with accessible animations and <strong>40 automated tests</strong>.</li>
+            <li>Set up Search Console, a sitemap, and structured data so players can find it.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="project">
+        <header>
+          <h3>Meaning Ladder</h3>
+          <p class="meta">Daily word game · JavaScript, Python, GitHub Actions, OpenAI API, GitHub Pages</p>
+          <a class="go" href="https://meaningladder.github.io">Play it <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg><span class="sr"> (opens Meaning Ladder)</span></a>
+        </header>
+        <div class="body">
+          <p>Climb from a start word to a goal word through related meanings. <strong>10+ players</strong>, three difficulty levels a day, an archive, and offline play through a service worker.</p>
+          <ul>
+            <li>Scheduled GitHub Actions generate the puzzles. An LLM picks each one from a shortlist already verified by BFS shortest paths over the word graph, so no unverified AI output reaches players.</li>
+            <li>Weekday difficulty tuned from graph metrics (par length, route counts). Hints use reverse Dijkstra along natural routes.</li>
+            <li><strong>210+ automated tests</strong> (pytest, Node) in CI. A parse check on every browser script was added after a production outage.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="project">
+        <header>
+          <h3>Application Tracker</h3>
+          <p class="meta">Full-stack · Python, FastAPI, React, TypeScript, Supabase (PostgreSQL)</p>
+          <a class="go" href="https://app-tracker-sepia.vercel.app">Open it <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg><span class="sr"> (opens Application Tracker)</span></a>
+        </header>
+        <div class="body">
+          <p>Reads Gmail through OAuth and uses OpenAI structured outputs to extract the company, role, status, and interview type. It tracked <strong>70+ applications</strong> from a live internship search.</p>
+          <ul>
+            <li>A two-stage keyword pre-filter kept <strong>97.9%</strong> of emails (2,381 of 2,432) away from the LLM, which cut API cost and screened out job-alert spam.</li>
+            <li>Sync time cut <strong>15×</strong> (170 s → 11 s) by batching Gmail requests and running LLM calls in parallel with retries.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="project">
+        <header>
+          <h3>Study Scheduler</h3>
+          <p class="meta">Full-stack · Freelance, client-commissioned · Next.js, Supabase, OpenAI API</p>
+        </header>
+        <div class="body">
+          <p>Turns exam dates imported from Notion or a syllabus PDF into a day-by-day study plan with daily OpenAI-generated quizzes. Missed days and wrong answers roll back into the plan.</p>
+        </div>
+      </article>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-h">
+      <h2 id="experience-h">Experience</h2>
+      <ol class="timeline">
+        <li>
+          <p class="when"><time datetime="2026-11">Nov 2026</time> – Present</p>
+          <div>
+            <h3>Freelance Software Developer</h3>
+            <p class="org">Self-employed · Remote</p>
+            <p>Delivered two client-requested full-stack web apps, LeReplacey and Study Scheduler, from idea to launch on Vercel, with continuous deployment and tests.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when"><time datetime="2026-01">Jan 2026</time> – <time datetime="2026-08">Aug 2026</time></p>
+          <div>
+            <h3>Software Engineer Intern</h3>
+            <p class="org">SEO USA, SEO Tech Developer Program · Virtual</p>
+            <ul>
+              <li>Designed the Home, Chat, and Settings screens in Figma and built them in React Native and TypeScript for Immerbot, a cross-platform AI conversation-practice app for language learners.</li>
+              <li>Wrote prompts for gpt-4o-mini-tts that give native-sounding, consistent tap-to-hear pronunciation. Used GPT-4o-mini with structured output schemas for clean in-chat translations.</li>
+              <li>Merged <strong>11 peer-reviewed pull requests</strong> on a 5-person Agile team. Feature branches auto-deployed to Vercel and Render.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <p class="when"><time datetime="2025-09">Sep 2025</time> – Present</p>
+          <div>
+            <h3>Software Engineering Pod Lead</h3>
+            <p class="org">Campus Coder Crew</p>
+            <p>Lead a team of 5 developers through sprint planning, task delegation, and Git workflows. Build a responsive React, Tailwind, and TypeScript client app from Figma designs, and handle client communication for BridgeUMD.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when"><time datetime="2025-08">Aug 2025</time> – Present</p>
+          <div>
+            <h3>Community Assistant</h3>
+            <p class="org">University of Maryland · College Park, MD</p>
+            <p>First point of contact for 50+ residents: maintenance, policy, front-desk check-in, and emergency response on evening and weekend shifts.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="about" aria-labelledby="about-h">
+      <h2 id="about-h">About</h2>
+      <div class="about">
+        <div>
+          <h3>Education</h3>
+          <p><strong>University of Maryland, College Park</strong><br>B.S. Computer Science, Minor in General Business<br>GPA 3.6 · Expected May 2028</p>
+          <p class="small">Algorithms, Data Structures, OOP (Java), Computer Systems, Statistics, Linear Algebra</p>
+          <p class="small">University Honors Program · MLT Career Prep Fellow (2026–) · CodePath Applied AI Engineering (2026)</p>
+        </div>
+        <div>
+          <h3>Off the keyboard</h3>
+          <ul class="tags">
+            <li>Word games &amp; puzzles</li><li>AI-assisted tools</li><li>Chess</li><li>Boxing</li><li>Running</li><li>Reading</li><li>Lifting</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Skills</h3>
+      <dl class="skills">
+        <div><dt>Languages</dt><dd>Python (NumPy, Pandas), Java, JavaScript, TypeScript, C++, SQL (PostgreSQL), Bash, HTML/CSS</dd></div>
+        <div><dt>Frameworks</dt><dd>React, React Native, FastAPI, Django REST Framework, Vite, Tailwind CSS, pytest, scapy</dd></div>
+        <div><dt>Tools</dt><dd>Git/GitHub, Docker, REST APIs, Supabase, CI/CD (GitHub Actions, Vercel, Render), Figma</dd></div>
+        <div><dt>AI</dt><dd>OpenAI API (structured outputs, TTS), prompt engineering, Claude Code (AI-assisted development, MCP)</dd></div>
+      </dl>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-h">
+      <h2 id="contact-h">Let’s talk</h2>
+      <p>Open to software engineering internships. The fastest way to reach me is email.</p>
+      <a class="email" href="mailto:nanfackguillaumekengni@gmail.com">nanfackguillaumekengni<wbr>@gmail.com</a>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>© 2026 Guillaume Nanfack Kengni · Handwritten HTML, no framework.</p>
+  </footer>
+</body>
+</html>
