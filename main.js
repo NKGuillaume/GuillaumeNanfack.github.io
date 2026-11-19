@@ -22,3 +22,12 @@ else {
   show(0, false);
   words.slice(1).forEach((_, k) => setTimeout(() => show(k + 1, true), 900 + k * 850));
 }
+
+// Games load only on request: no extra page weight, and Tab never lands inside a game by accident.
+document.querySelectorAll('.embed button').forEach((b) => b.addEventListener('click', () => {
+  const box = b.parentElement;
+  const f = Object.assign(document.createElement('iframe'), { src: box.dataset.src, title: box.dataset.title });
+  f.allow = 'clipboard-write'; // lets the game's share button copy results
+  box.replaceChildren(f);
+  f.focus();
+}));

@@ -188,3 +188,25 @@ h3 { font-size: 1.5rem; letter-spacing: -0.01em; }
 @media (prefers-reduced-transparency: reduce) {
   .top { background: var(--paper); backdrop-filter: none; }
 }
+
+/* inline game embeds */
+.embed { margin-top: 1.5rem; }
+.ghost {
+  min-height: 44px; padding: 0.65rem 1.2rem; border-radius: 999px;
+  border: 1px solid var(--ink); background: transparent; color: var(--ink);
+  font: 600 0.95rem var(--sans); cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.16s var(--ease);
+}
+.ghost:hover { background: var(--ink); color: var(--paper); }
+.ghost:active { transform: scale(0.97); }
+.embed iframe {
+  display: block; width: 100%; max-width: 440px; height: min(720px, 80vh);
+  border: 1px solid var(--rule); border-radius: 12px; background: var(--paper-2);
+  animation: arrive 0.3s var(--ease);
+}
+@keyframes arrive { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .ghost:active { transform: none; } }
+@media (max-width: 760px) {
+  /* games need the full phone width; break out of the side gutter */
+  .embed iframe { width: calc(100% + 2 * var(--gutter)); max-width: none; margin-inline: calc(-1 * var(--gutter)); border-radius: 0; border-inline: 0; }
+}
